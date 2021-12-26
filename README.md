@@ -16,7 +16,7 @@ This is official documentation for fastpay merchant SDK.
 This repository provides the following components that are common to our open source projects:
 
 - FastpaySDK.framework
-- Usermanual.pdf (Documentation)
+- FastPaySDKDocumentation.pdf
 
 
 
