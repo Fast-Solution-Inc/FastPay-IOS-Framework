@@ -15,7 +15,7 @@ This is official documentation for fastpay merchant SDK.
 ## Scaffolding Provided
 This repository provides the following components that are common to our open source projects:
 
-- FastpaySDK.framework
+- FastpayMerchantSDK.framework.zip
 - FastPaySDKDocumentation.pdf
 
 
