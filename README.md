@@ -1,4 +1,4 @@
-# FastPay Merchant SDK (iOS).  [![Generic badge](https://img.shields.io/badge/Swift-5-FA7343?style=for-the-badge&logo=swift&logoColor=white)](https://shields.io/). [![Generic badge](https://img.shields.io/badge/Xcode-13.0-007ACC?style=flat-square&logo=Xcode&logoColor=white)](https://shields.io/)
+# FastPay Merchant SDK (iOS).  [![Generic badge](https://img.shields.io/badge/Swift-5-FA7343?style=for-the-badge&logo=swift&logoColor=white)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/Xcode-13.0-007ACC?style=flat-square&logo=Xcode&logoColor=white)](https://shields.io/)
 
 
 
@@ -131,3 +131,5 @@ class ViewController: UIViewController, FastPayDelegate {
     }
 }
  ```
+ 
+#### For details or clearification you can get help from document pdf. 
