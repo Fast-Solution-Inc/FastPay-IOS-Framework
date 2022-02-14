@@ -132,4 +132,5 @@ class ViewController: UIViewController, FastPayDelegate {
 }
  ```
  
+#### N.B: For Xcode 13.0 use "FastpayMerchantSDK.framework.zip" and for XCode 13.2 or latter use "FastpayMerchantSDK.framework(xcode13.2).zip"
 #### For details or clearification you can get help from document pdf. 
