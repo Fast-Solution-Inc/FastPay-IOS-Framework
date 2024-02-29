@@ -129,8 +129,24 @@ class ViewController: UIViewController, FastPayDelegate {
     func fastpayTransactionFailed(with orderId: String) {
         print("Failed Order ID: \(orderId)")
     }
+    
+    func fastPayProcessStatus(with status: FPFrameworkStatus) {
+        print(status)
+    }
 }
  ```
+ 
+### FPFrameworkStatus
+
+In this callback, you will get Framework processing statuses, like when you redirect to the FastPay app or continue to Framework, or when Framework is cancelled by the user. Status is given below:
+``` 
+ public enum FPFrameworkStatus: Int{
+   case INIT
+   case PAYMENT_WITH_FASTPAY_APP
+   case PAYMENT_WITH_FASTPAY_SDK
+   case CANCEL
+ }
+```
  
 #### N.B: For Xcode 13.0 use "FastpayMerchantSDK.framework.zip" and for XCode 13.2 or latter use "FastpayMerchantSDK.framework(xcode13.2).zip"
 #### For details or clearification you can get help from document pdf. 
