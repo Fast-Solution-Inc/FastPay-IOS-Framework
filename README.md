@@ -9,7 +9,7 @@
 
 This is official documentation for fastpay merchant SDK.
 
-![alt text](https://fastpay.blackace.tech/images/logo_dark.png)
+![alt text](https://fast-pay.iq/images/logo_dark.png)
 
 
 ## Scaffolding Provided
@@ -18,9 +18,18 @@ This repository provides the following components that are common to our open so
 - FastpayMerchantSDK.xcframework.zip
 - FastPaySDKDocumentation.pdf
 
+## Features
+1. Make payment transaction using Fastpay App.
+2. Check the status of the payments which you make.
+3. Verify payment with OTP.
+4. Framework status provided by callbacks.
+5. Application redirect with required data while using fastpay personal applciation.
+
+### Framework flow
+![alt text](flow.png)
 
 
-## 1.Get Started
+## Get Started
 						
 Drag and drop the framework file in your project. Check ‘Copy items if needed’ and select your target.
 
@@ -30,7 +39,7 @@ After successfully adding the framework file in your project, select project fil
 and then select ​**Embed & Sign**​ for the added framework as shown below
 
 
-## 2. Implementation
+## Implementation
 
 Import FastpayMerchantSDK in your class
 ```swift
@@ -91,6 +100,68 @@ You will get the following data from transaction object in the delegate function
  status: String?
  transactionTime: String?
  ```
+Call back Uri
+### Step 
+1. Create URI
+Create a URI with a unique name (our suggestion is to provide your app name with prefix text “appfpclient”, for example, if your app name is “FaceLook”, your URI should be appfpclientFaceLook)
+2. Add URI to your info.plist
+Now add this URI to your app info.plist file
+
+```swift
+<key>CFBundleURLTypes</key>
+ <array>
+   <dict>
+     <key>CFBundleURLSchemes</key>
+     <array>
+       <string>appfpclientFaceLook</string>
+     </array>
+   </dict>
+ </array>
+```
+3. Add this String extension to your code base
+```swift
+extension String{
+  func splitQueryString() -> [String: String] {
+    var keyValuePairs = [String: String]()
+    let components = self.components(separatedBy: “&”)
+    for component in components {
+      let keyValue = component.components(separatedBy: “=”)
+      if keyValue.count == 2 {
+        let key = keyValue[0]
+        let value = keyValue[1].removingPercentEncoding ?? “”
+        keyValuePairs[key] = value
+      }
+    }
+    return keyValuePairs
+  }
+}
+```
+4. Add this Method to Your Scene Delegate. Whenever your transaction completes/fails from FastPay App, you will be navigated here with the result.
+```swift
+func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+  guard let url = URLContexts.first?.url else {
+    return
+  }
+```
+Please replace `appfpclientfastpaysdktest3` with your created URI (which is added to your info.plist file too)
+```swift
+ if let scheme = url.scheme, scheme.lowercased() == "appfpclientfastpaysdktest3".lowercased() {
+          let query            = url.query
+          let data             = query?.splitQueryString()
+          let transactionStatus  = data?[“transactionStatus”] // failed/success
+          let transactionId      = data?[“transactionId”]
+          let amount           = data?[“amount”]
+          let orderId           = data?[“orderId”]
+          let transactionTime    = data?[“transactionTime”]
+          let currency          = data?[“currency”]
+          let customerMobileNo = data?[“customerMobileNo”]
+          let customerName    = data?[“customerName”]
+          let status            = data?[“status”]
+      print(“Transaction completed with \(transactionStatus ?? “No Status found”)“)
+    }
+  }
+}
+```
 
 ## Sample Test Code
 ```swift
@@ -106,7 +177,7 @@ class ViewController: UIViewController, FastPayDelegate {
     }
     
     func callSDK(){
-        let testObj = Fastpay(storeId: "1953_693", storePassword: "Password100@", orderId: "order240", amount: 500, currency: .IQD)
+        let testObj = Fastpay(storeId: "1953_693", storePassword: "Password100@", orderId: "order240", amount: 500, currency: .IQD,uri: "appfpclientfastpaysdktest3")
         testObj.delegate = self
         testObj.start(in: self, for: .Sandbox)
     }
