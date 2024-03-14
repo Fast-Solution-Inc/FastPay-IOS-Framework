@@ -9,7 +9,7 @@
 
 This is official documentation for fastpay merchant SDK.
 
-![alt text](https://fastpay.blackace.tech/images/logo_dark.png)
+![alt text](https://fast-pay.iq/images/logo_dark.png)
 
 
 ## Scaffolding Provided
