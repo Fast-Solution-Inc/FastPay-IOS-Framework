@@ -103,7 +103,7 @@ You will get the following data from transaction object in the delegate function
 Call back Uri
 ### Step 
 1. Create URI
-Create a URI with a unique name (our suggestion is to provide your app name with prefix text “appfpclient”, for example, if your app name is “FaceLook”, your URI should be appfpclientFaceLook)
+Create a URI with a unique name (our suggestion is to provide your app name with prefix text `"appfpclient"`, for example, if your app name is "FaceLook", your URI should be appfpclientFaceLook)
 2. Add URI to your info.plist
 Now add this URI to your app info.plist file
 
@@ -123,12 +123,12 @@ Now add this URI to your app info.plist file
 extension String{
   func splitQueryString() -> [String: String] {
     var keyValuePairs = [String: String]()
-    let components = self.components(separatedBy: “&”)
+    let components = self.components(separatedBy: "&")
     for component in components {
-      let keyValue = component.components(separatedBy: “=”)
+      let keyValue = component.components(separatedBy: "=")
       if keyValue.count == 2 {
         let key = keyValue[0]
-        let value = keyValue[1].removingPercentEncoding ?? “”
+        let value = keyValue[1].removingPercentEncoding ?? ""
         keyValuePairs[key] = value
       }
     }
@@ -149,16 +149,16 @@ Please replace `appfpclientfastpaysdktest3` with your created URI (which is adde
  if let scheme = url.scheme, scheme.lowercased() == "appfpclientfastpaysdktest3".lowercased() {
           let query            = url.query
           let data             = query?.splitQueryString()
-          let transactionStatus  = data?[“transactionStatus”] // failed/success
-          let transactionId      = data?[“transactionId”]
-          let amount           = data?[“amount”]
-          let orderId           = data?[“orderId”]
-          let transactionTime    = data?[“transactionTime”]
-          let currency          = data?[“currency”]
-          let customerMobileNo = data?[“customerMobileNo”]
-          let customerName    = data?[“customerName”]
-          let status            = data?[“status”]
-      print(“Transaction completed with \(transactionStatus ?? “No Status found”)“)
+          let transactionStatus  = data?["transactionStatus"] // failed/success
+          let transactionId      = data?["transactionId"]
+          let amount           = data?["amount"]
+          let orderId           = data?["orderId"]
+          let transactionTime    = data?["transactionTime"]
+          let currency          = data?["currency"]
+          let customerMobileNo = data?["customerMobileNo"]
+          let customerName    = data?["customerName"]
+          let status            = data?["status"]
+      print("Transaction completed with \(transactionStatus ?? "No Status found")")
     }
   }
 }
