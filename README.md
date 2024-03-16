@@ -159,8 +159,6 @@ Please replace `appfpclientfastpaysdktest3` with your created URI (which is adde
           let customerName    = data?["customerName"]
           let status            = data?["status"]
       print("Transaction completed with \(transactionStatus ?? "No Status found")")
-    }
-  }
 }
 ```
 
