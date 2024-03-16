@@ -142,6 +142,7 @@ func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
   guard let url = URLContexts.first?.url else {
     return
   }
+}
 ```
 Please replace `appfpclientfastpaysdktest3` with your created URI (which is added to your info.plist file too)
 ```swift
