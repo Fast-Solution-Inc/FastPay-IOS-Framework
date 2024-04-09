@@ -113,7 +113,7 @@ Now add this URI to your app info.plist file
    <dict>
      <key>CFBundleURLSchemes</key>
      <array>
-       <string>appfpclientFaceLook</string>
+       <string>appfpclientfastpaysdktest3</string>
      </array>
    </dict>
  </array>
