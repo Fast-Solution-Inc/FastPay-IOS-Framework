@@ -136,7 +136,18 @@ extension String{
   }
 }
 ```
-4. Add this Method to Your Scene Delegate. Whenever your transaction completes/fails from FastPay App, you will be navigated here with the result.
+4. Handle incoming URLs
+When another app opens a URL containing your custom scheme, the system launches your app, if necessary, and brings it to the foreground. The system delivers the URL to your app by calling your app delegate’s application(_:open:options:) method. Add code to the method to parse the contents of the URL and take appropriate actions. To ensure the URL is parsed correctly, use NSURLComponents APIs to extract the components. Obtain additional information about the URL, such as which app opened it, from the system-provided options dictionary.
+
+```swift
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        // Handle the URL here
+        print("Received URL: \(url)")
+        return true
+}
+```
+If your app has opted into Scenes, and your app isn’t running, the system delivers the URL to the scene(_:willConnectTo:options:) delegate method after launch, and to scene(_:openURLContexts:) when your app opens a URL while running or suspended in memory.
+Add this Method to Your Scene Delegate. Whenever your transaction completes/fails from FastPay App, you will be navigated here with the result.
 ```swift
 func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
   guard let url = URLContexts.first?.url else {
@@ -145,6 +156,7 @@ func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
 }
 ```
 Please replace `appfpclientfastpaysdktest3` with your created URI (which is added to your info.plist file too)
+The below code is for data retrieval:
 ```swift
  if let scheme = url.scheme, scheme.lowercased() == "appfpclientfastpaysdktest3".lowercased() {
           let query            = url.query
