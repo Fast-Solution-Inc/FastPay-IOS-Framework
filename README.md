@@ -54,7 +54,7 @@ class ViewController: UIViewController, FastPayDelegate {
 
 Initialize the instance of FastPay
 ```swift
-let testObj = Fastpay(storeId: "*****", storePassword: "****", orderId: "*****", amount: 500, currency: .IQD)
+let testObj = Fastpay(storeId: "*****", storePassword: "****", orderId: "*****", amount: 500, currency: .IQD, uri: :"appfpclientfastpaysdktest3")
 ```
  
 Set your class as delegate for FastPayDelegate
